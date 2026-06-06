@@ -1,6 +1,6 @@
     </main>
      
-    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 border-top border-top border-dark text-center bg-light"> 
+    <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 border-top border-top border-dark text-center bg-light rounded-5 rounded-bottom-0"> 
 
         <div class="col-md-4 align-items-center justify-content-center">
             <p>Horaires:</p>
@@ -18,7 +18,7 @@
         </a> 
 
         <ul class="nav col-md-4 justify-content-center"> 
-            <li class="nav-item"><a href="/index.php" class="nav-link px-2 text-dark">Accueil</a></li> 
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-dark">Contacts</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-dark">Mentions légales</a></li> 
             <li class="nav-item"><a href="#" class="nav-link px-2 text-dark">Conditions générales d'utilisation</a></li> 
         </ul> 
