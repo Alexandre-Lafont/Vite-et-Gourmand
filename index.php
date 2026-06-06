@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
 
-    <script src='index.js'></script>
-
 </head>
 
 <body class="bg-secondary d-flex flex-column">
@@ -80,33 +78,4 @@
             </div>
         </div>
 
-    </main>
-
-    <footer class="p-3 pt-5">
-
-        <div class="row justify-content-center align-items-center">
-
-            <!-- Horaires -->
-            <div class="col-6 col-md-2">
-                <p>Horaires:</p>
-                <p>Lundi: Fermé</p>
-                <p>Mardi-Jeudi: 9h-18h</p>
-                <p>Vendredi: 9h-19h</p>
-                <p>Samedi: 9h-17h</p>
-                <p>Dimanche: 10h-14h</p>
-            </div>
-
-            <!-- Mentions légales et CGU -->
-            <div class="col-6 col-md-3 text-center">
-                <div class="d-flex flex-column">
-                    <a href="" class="mb-4">Mentions légales</a>
-                    <a href="">Conditions générales d'utilisation</a>
-                </div>
-            </div>
-
-        </div>
-
-    </footer>
-    
-</body>
-</html>
+<?php include_once 'templates/footer.php'; ?>
