@@ -11,7 +11,7 @@
 
         <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" aria-label="#"> 
             <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                <use xlink:href="/index.php"></use>
+                <use xlink:href="#"></use>
             </svg> 
         </a> 
 
@@ -23,7 +23,7 @@
     
     </footer> 
 
-    <script src='./index.js'></script>
+    <script src='/index.js'></script>
     
 </body>
 </html>

@@ -23,7 +23,7 @@
                     <li>1 chiffre</li>
                     <li>1 caractère spécial</li>
                 </ul>
-                <a href="" class="btn btn-link">Réinitialisation du mot de passe</a>
+                <a href="/pages/reset-password.php" class="btn btn-link">Réinitialisation du mot de passe</a>
                 <div class="d-flex justify-content-end mt-3">
                     <button type="submit" class="btn btn-success rounded-5">S'inscrire</button>
                 </div>
