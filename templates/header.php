@@ -8,14 +8,14 @@
     <title>Vite & Gourmand - Accueil</title>
 
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./style.css'>
 
 </head>
 
 <body class="bg-secondary d-flex flex-column">
 
     <header class="bg-light"> 
-        <div class="px-3 py-2 border-bottom border-dark"> 
+        <div class="px-3 py-2"> 
             <div class="container"> 
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"> 
                     <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-black text-decoration-none"> 
@@ -24,7 +24,7 @@
                         </svg> 
                     </a> 
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0"> 
-                        <li> <a href="#" class="nav-link text-secondary"> 
+                        <li> <a href="index.php" class="nav-link text-secondary"> 
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true">
                                     <use xlink:href="#home"></use>
                                 </svg>
@@ -73,10 +73,9 @@
             </form> 
 
             <div class="text-end"> 
-                <button type="button" class="btn btn-light text-dark me-2 rounded-5">Se connecter</button> 
-                <button type="button" class="btn btn-success rounded-5">S'inscrire</button> 
+                <button type="button" class="btn btn-light text-dark me-2 rounded-5" onclick="window.location.href='/pages/login.php'">Se connecter</button> 
+                <button type="button" class="btn btn-success rounded-5" onclick="window.location.href='/pages/register.php'">S'inscrire</button> 
             </div> 
         </div> 
     </div>
 
-    <main>

@@ -1,5 +1,3 @@
-    </main>
-     
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 border-top border-top border-dark text-center bg-light rounded-5 rounded-bottom-0"> 
 
         <div class="col-md-4 align-items-center justify-content-center">
@@ -25,7 +23,7 @@
     
     </footer> 
 
-    <script src='index.js'></script>
+    <script src='./index.js'></script>
     
 </body>
 </html>
