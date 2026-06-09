@@ -11,7 +11,7 @@
             <form>
                 <input type="email" placeholder="Adresse e-mail" class="form-control mb-3 rounded-5 border-dark">
                 <input type="password" placeholder="Mot de passe" class="form-control mb-3 rounded-5 border-dark">
-                <a href="reset-password.php" class="btn btn-link">Réinitialisation du mot de passe</a>
+                <a href="/réinitialisation-mot-de-passe" class="btn btn-link">Réinitialisation du mot de passe</a>
                 <div class="d-flex justify-content-end mt-3">
                     <button type="submit" class="btn btn-success rounded-5">Se connecter</button>
                 </div>

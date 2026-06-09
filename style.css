@@ -4,10 +4,22 @@ p {
     margin-bottom: 0px;
 }
 
-/* footer {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 20%) !important;
-} */
-
-.website-title {
-    font-family: cursive;
+body {
+    background-image: url('/assets/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+/* ID */
+
+.nav-link {
+    margin: 0px 5px;
+}
+
+.nav-link:hover {
+    background-color: var(--bs-border-color) !important;
+    border-radius: 50px;
+    color: black !important;
+}
+
