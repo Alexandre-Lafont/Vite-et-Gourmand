@@ -47,8 +47,8 @@
                             </a> 
                         </li> 
 
-                        <li> <a href="#" class="nav-link  <?= $currentPage === 'menu.php' ? 'active btn btn-success text-white rounded-pill' : 'text-black' ?>" 
-                                <?= $currentPage === 'menu.php' ? 'aria-current="page" ': '' ?>>
+                        <li> <a href="/pages/list-menus.php" class="nav-link  <?= $currentPage === 'list-menus.php' ? 'active btn btn-success text-white rounded-pill' : 'text-black' ?>" 
+                                <?= $currentPage === 'list-menus.php' ? 'aria-current="page" ': '' ?>>
                                 <svg class="bi me-2" width="16" height="16" aria-hidden="true">
                                     <use href="/assets/icons/card-list.svg"></use>
                                 </svg>

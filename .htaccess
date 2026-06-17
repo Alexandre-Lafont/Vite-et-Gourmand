@@ -3,4 +3,5 @@ RewriteEngine On
 RewriteRule ^connexion/?$ pages/login.php [L,QSA]
 RewriteRule ^inscription/?$ pages/register.php [L,QSA]
 RewriteRule ^réinitialisation-mot-de-passe/?$ pages/reset-password.php [L,QSA]
+RewriteRule ^liste-menus/?$ pages/list-menus.php [L,QSA]
 RewriteRule ^$ index.php [L]
