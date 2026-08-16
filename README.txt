@@ -1,0 +1,1 @@
+Remplissez les champs de .env.example par vos propre paramètres de connexion de votre base de données.

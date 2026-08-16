@@ -1,4 +1,6 @@
-<?php include_once '../templates/header.php'; 
+<?php 
+
+include_once '../templates/header.php'; 
 
 $registerError = '';
 
@@ -84,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li>1 chiffre</li>
                     <li>1 caractère spécial</li>
                 </ul>
-                <a href="/pages/reset-password.php" class="btn btn-link">Réinitialisation du mot de passe</a>
                 <div class="d-flex justify-content-end mt-3">
                     <button type="submit" class="btn btn-success rounded-5">S'inscrire</button>
                 </div>
