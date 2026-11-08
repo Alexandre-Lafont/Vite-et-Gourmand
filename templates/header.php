@@ -1,7 +1,7 @@
 <?php
 
-    include_once '../libs/config.php';
-    include_once '../libs/pdo.php';
+    include_once __DIR__ . '/../libs/config.php';
+    include_once __DIR__ . '/../libs/pdo.php';
 
 ?>
 
