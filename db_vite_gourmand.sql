@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS `vite_gourmand`;
+USE `vite_gourmand`;
 
 CREATE TABLE `users`(
     `user_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
