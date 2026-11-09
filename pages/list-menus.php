@@ -35,7 +35,7 @@
                 ?>
                 <div class="m-3 bg-light rounded-5 overflow-hidden">
                     <?php if (is_file($imageFile)): ?>
-                        <img src="<?= $imageUrl ?>" alt="<?= htmlspecialchars($menu['titre'], ENT_QUOTES, 'UTF-8') ?>" class="w-100" style="height: 220px; object-fit: cover;">
+                        <img src="<?= $imageUrl ?>" alt="<?= htmlspecialchars($menu['titre'], ENT_QUOTES, 'UTF-8') ?>" class="w-100" style="height: 350px; object-fit: cover;">
                     <?php endif; ?>
                     <div class="p-3">
                         <h2><?= $menu['titre'] ?></h2>
