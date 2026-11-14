@@ -50,11 +50,23 @@ if ($menuId) {
                 <h1><?= htmlspecialchars($menu['titre'], ENT_QUOTES, 'UTF-8') ?></h1>
                 <p><?= htmlspecialchars($menu['description'], ENT_QUOTES, 'UTF-8') ?></p>
                 <div class="border border-top border-secondary-emphasis my-3"></div>
-                <p><strong>Nombre minimum de personnes :</strong> <?= (int) $menu['nombre_personne_minimum'] ?></p>
-                <p><strong>Prix par personne :</strong> <?= htmlspecialchars($menu['prix_personne'], ENT_QUOTES, 'UTF-8') ?> €</p>
-                <p><strong>Quantité restante :</strong> <?= (int) $menu['quantite_restante'] ?></p>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-people-fill text-success"></i>
+                    <span><strong>Nombre minimum de personnes :</strong> <?= (int) $menu['nombre_personne_minimum'] ?></span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-tags-fill text-success"></i>
+                    <span><strong>Prix par personne :</strong> <?= htmlspecialchars($menu['prix_personne'], ENT_QUOTES, 'UTF-8') ?> €</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-box-seam text-success"></i>
+                    <span><strong>Quantité restante :</strong> <?= (int) $menu['quantite_restante'] ?></span>
+                </div>
 
-                <h2 class="h4 mt-4">Plats inclus</h2>
+                <div class="h4 mt-4 d-flex align-items-center gap-2">
+                    <i class="bi bi-fork-knife text-success"></i>
+                    <span><strong>Plats inclus :</strong></span>
+                </div>
                 <?php if ($plats): ?>
                     <ul>
                         <?php foreach ($plats as $plat): ?>
