@@ -1,12 +1,35 @@
-<?php 
+<?php
 
-include_once '../templates/header.php'; 
+include_once '../templates/header.php';
+include_once '../libs/users.php';
 
 $registerError = '';
+$emailError = '';
+$registerSuccess = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['password'] !== $_POST['confirm_password']) {
+    $name = trim($_POST['name'] ?? '');
+    $firstname = trim($_POST['firstname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+
+    if ($password !== $confirmPassword) {
         $registerError = 'Les 2 mots de passe doivent être identiques.';
+    } elseif (findUserByEmail($email) !== null) {
+        $emailError = 'Cette adresse e-mail est déjà utilisée.';
+    } else {
+        try {
+            addUser($name, $firstname, $email, $phone, $password);
+            $registerSuccess = 'Votre compte a été créé avec succès.';
+        } catch (PDOException $exception) {
+            if ($exception->getCode() === '23000') {
+                $emailError = 'Cette adresse e-mail est déjà utilisée.';
+            } else {
+                throw $exception;
+            }
+        }
     }
 }
 
@@ -26,7 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             pour prévenir d'attaques XSS.
             Dans ce cas précis, la variable $_SERVER["PHP_SELF"] envoie les données du form à cette page même. 
             De manière à ce que l'utilisateur reçoive un message d'erreur à la même page que le form -->
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <?php if ($registerError !== ''): ?>
+                <p class="text-danger"><?= htmlspecialchars($registerError, ENT_QUOTES, 'UTF-8') ?></p>
+            <?php endif; ?>
+            <?php if ($registerSuccess !== ''): ?>
+                <p class="text-success"><?= htmlspecialchars($registerSuccess, ENT_QUOTES, 'UTF-8') ?></p>
+            <?php endif; ?>
+            <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8') ?>">
                 <input 
                     type="text" 
                     name="name" 
@@ -44,10 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     minlength="2"
                     class="form-control mb-3 rounded-5">
 
+                <?php if ($emailError !== ''): ?>
+                    <p class="text-danger mb-1"><?= htmlspecialchars($emailError, ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endif; ?>
                 <input 
                     type="email" 
                     name="email" 
                     placeholder="Adresse e-mail" 
+                    value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                     required 
                     class="form-control mb-3 rounded-5">
 
