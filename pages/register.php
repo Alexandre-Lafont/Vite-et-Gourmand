@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="m-3 p-3 bg-light rounded-5 col-md-6 mx-auto">
             <h1 class="text-center">Inscription</h1>
             <p class="text-center mb-3">
-                Si vous possédez déjà un compte chez Vite & Gourmand, connectez-vous en <a href="/pages/login.php" class="text-primary">cliquant ici.</a>
+                Si vous possédez déjà un compte chez Vite & Gourmand, connectez-vous en <a href="/vite_gourmand/pages/login.php" class="text-primary">cliquant ici.</a>
             </p>
             <p class="mb-3 text-danger">Tous les champs sont obligatoires.</p>
 

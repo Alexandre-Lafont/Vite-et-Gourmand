@@ -1,5 +1,9 @@
 <?php
 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     include_once __DIR__ . '/../libs/config.php';
     include_once __DIR__ . '/../libs/pdo.php';
 

@@ -6,7 +6,7 @@
         <div class="m-3 p-3 bg-light rounded-5 col-md-6 mx-auto">
             <h1 class="text-center">Connexion</h1>
             <p class="text-center mb-3">
-                Si vous ne possédez pas de compte chez Vite & Gourmand, inscrivez-vous en <a href="/pages/register.php" class="text-primary">cliquant ici.</a>
+                Si vous ne possédez pas de compte chez Vite & Gourmand, inscrivez-vous en <a href="/vite_gourmand/pages/register.php" class="text-primary">cliquant ici.</a>
             </p>
             <form>
                 <input type="email" placeholder="Adresse e-mail" class="form-control mb-3 rounded-5 border-dark">

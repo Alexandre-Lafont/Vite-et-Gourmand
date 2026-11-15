@@ -17,14 +17,28 @@ if ($menuId) {
 
     if ($menu) {
         $requetePlats = $pdo->prepare(
-            'SELECT plats.titre, plats.regime
+            'SELECT plats.titre, plats.regime,
+                    GROUP_CONCAT(DISTINCT allergenes.libelle ORDER BY allergenes.libelle SEPARATOR ", ") AS allergenes
             FROM plats
             INNER JOIN menus_plats ON menus_plats.plat_id = plats.plat_id
+            LEFT JOIN plats_allergenes ON plats_allergenes.plat_id = plats.plat_id
+            LEFT JOIN allergenes ON allergenes.allergene_id = plats_allergenes.allergene_id
             WHERE menus_plats.menu_id = :menu_id
+            GROUP BY plats.plat_id, plats.titre, plats.regime
             ORDER BY plats.titre'
         );
         $requetePlats->execute(['menu_id' => $menuId]);
         $plats = $requetePlats->fetchAll(PDO::FETCH_ASSOC);
+
+        $requeteTheme = $pdo->prepare(
+            'SELECT GROUP_CONCAT(DISTINCT themes.libelle ORDER BY themes.libelle SEPARATOR ", ") AS themes
+            FROM menus_plats
+            INNER JOIN themes_plats ON themes_plats.plat_id = menus_plats.plat_id
+            INNER JOIN themes ON themes.theme_id = themes_plats.theme_id
+            WHERE menus_plats.menu_id = :menu_id'
+        );
+        $requeteTheme->execute(['menu_id' => $menuId]);
+        $theme = $requeteTheme->fetchColumn() ?: 'Thème non renseigné';
     }
 }
 ?>
@@ -47,7 +61,9 @@ if ($menuId) {
             <?php endif; ?>
 
             <div class="p-3">
-                <h1><?= htmlspecialchars($menu['titre'], ENT_QUOTES, 'UTF-8') ?></h1>
+                <h1><?= htmlspecialchars($menu['titre'], ENT_QUOTES, 'UTF-8') ?>
+                    <small class="fs-5 text-success">(<?= htmlspecialchars($theme, ENT_QUOTES, 'UTF-8') ?>)</small>
+                </h1>
                 <p><?= htmlspecialchars($menu['description'], ENT_QUOTES, 'UTF-8') ?></p>
                 <div class="border border-top border-secondary-emphasis my-3"></div>
                 <div class="d-flex align-items-center gap-2">
@@ -56,7 +72,10 @@ if ($menuId) {
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-tags-fill text-success"></i>
-                    <span><strong>Prix par personne :</strong> <?= htmlspecialchars($menu['prix_personne'], ENT_QUOTES, 'UTF-8') ?> €</span>
+                    <span><strong>Prix pour <?= (int) $menu['nombre_personne_minimum'] ?> personnes :</strong>
+                        <?= number_format((float) $menu['prix_personne'] * (int) $menu['nombre_personne_minimum'], 2, ',', ' ') ?> €
+                        <small>(<?= htmlspecialchars($menu['prix_personne'], ENT_QUOTES, 'UTF-8') ?> € par personne)</small>
+                    </span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-box-seam text-success"></i>
@@ -70,17 +89,53 @@ if ($menuId) {
                 <?php if ($plats): ?>
                     <ul>
                         <?php foreach ($plats as $plat): ?>
-                            <li><?= htmlspecialchars($plat['titre'], ENT_QUOTES, 'UTF-8') ?> (<?= htmlspecialchars($plat['regime'], ENT_QUOTES, 'UTF-8') ?>)</li>
+                        <li>
+                            <?= htmlspecialchars($plat['titre'], ENT_QUOTES, 'UTF-8') ?>
+                            (<?= htmlspecialchars($plat['regime'], ENT_QUOTES, 'UTF-8') ?>)
+                            — Allergènes :
+                            <?= $plat['allergenes'] ? htmlspecialchars($plat['allergenes'], ENT_QUOTES, 'UTF-8') : 'aucun renseigné' ?>
+                        </li>
                         <?php endforeach; ?>
                     </ul>
                 <?php else: ?>
                     <p>Aucun plat renseigné pour ce menu.</p>
                 <?php endif; ?>
 
+                <div class="alert alert-secondary mt-4" role="note">
+                    <strong>Informations pratiques :</strong>
+                    <p class="mt-2">Veuillez prévoir un délai de commande adapté à votre prestation. Conservez les plats selon les indications communiquées par Vite &amp; Gourmand et respectez la chaîne du froid.</p>
+                </div>
+
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <a href="/vite_gourmand/pages/cart.php?menu_id=<?= (int) $menu['menu_id'] ?>" class="btn btn-success rounded-pill mt-3">Commander</a>
+                <?php else: ?>
+                    <button type="button" class="btn btn-success rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#login-required-modal">Commander</button>
+                <?php endif; ?>
                 <a href="/vite_gourmand/pages/list-menus.php" class="btn btn-outline-success rounded-pill mt-3">Retour aux menus</a>
             </div>
         </article>
     <?php endif; ?>
 </main>
+
+<?php if ($menu && empty($_SESSION['user_id'])): ?>
+    <div class="modal fade" id="login-required-modal" tabindex="-1" aria-labelledby="login-required-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="login-required-modal-title">Connexion nécessaire</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Connectez-vous ou créez un compte pour commander un menu.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/vite_gourmand/pages/login.php" class="btn btn-success rounded-pill">Se connecter</a>
+                    <a href="/vite_gourmand/pages/register.php" class="btn btn-outline-success rounded-pill">S'inscrire</a>
+                    <button type="button" class="btn btn-link text-secondary" data-bs-dismiss="modal">Continuer la navigation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php include_once '../templates/footer.php'; ?>

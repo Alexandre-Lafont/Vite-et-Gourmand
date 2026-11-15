@@ -167,6 +167,15 @@
                         <a href="/vite_gourmand/pages/menu-details.php?menu_id=<?= $menu['menu_id'] ?>" class="btn btn-success rounded-pill w-100 mt-3">
                             Voir le menu
                         </a>
+                        <?php if (!empty($_SESSION['user_id'])): ?>
+                            <a href="/vite_gourmand/pages/cart.php?menu_id=<?= (int) $menu['menu_id'] ?>" class="btn btn-outline-success rounded-pill w-100 mt-2">
+                                Commander
+                            </a>
+                        <?php else: ?>
+                            <button type="button" class="btn btn-outline-success rounded-pill w-100 mt-2" data-bs-toggle="modal" data-bs-target="#login-required-modal">
+                                Commander
+                            </button>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endforeach; 
@@ -177,6 +186,27 @@
             <p id="no-filter-results" class="m-3 p-3 bg-light rounded-5 d-none">Aucun menu ne correspond à vos critères.</p>
         </div>
     </main>
+
+    <?php if (empty($_SESSION['user_id'])): ?>
+        <div class="modal fade" id="login-required-modal" tabindex="-1" aria-labelledby="login-required-modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5" id="login-required-modal-title">Connexion nécessaire</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Connectez-vous ou créez un compte pour commander un menu.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/vite_gourmand/pages/login.php" class="btn btn-success rounded-pill">Se connecter</a>
+                        <a href="/vite_gourmand/pages/register.php" class="btn btn-outline-success rounded-pill">S'inscrire</a>
+                        <button type="button" class="btn btn-link text-secondary" data-bs-dismiss="modal">Continuer la navigation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <script>
         (() => {
