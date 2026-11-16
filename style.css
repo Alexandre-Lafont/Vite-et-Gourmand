@@ -48,11 +48,6 @@ p {
     color: black !important;
 }
 
-.menu-filter {
-    flex: 1 1 180px;
-    min-width: 0;
-}
-
 .menu-filter-toggle .bi {
     transition: transform 0.2s ease;
 }

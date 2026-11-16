@@ -51,6 +51,18 @@ CREATE TABLE `commandes`(
     FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
 );
 
+CREATE TABLE `commande_contacts`(
+    `contact_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `commande_id` INT NOT NULL,
+    `contacte_par` INT NOT NULL,
+    `mode_contact` ENUM('email', 'gsm') NOT NULL,
+    `motif` TEXT NOT NULL,
+    `date_contact` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (`commande_id`) REFERENCES `commandes`(`commande_id`),
+    FOREIGN KEY (`contacte_par`) REFERENCES `users`(`user_id`)
+);
+
 CREATE TABLE `menus`(
     `menu_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 

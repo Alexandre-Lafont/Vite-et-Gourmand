@@ -1,14 +1,12 @@
 <?php include_once '../templates/header.php'; ?>
 
     <main class="flex-fill align-items-center">
-        <div class="m-3 p-3 col-md-10 mx-auto bg-light rounded-5">
+        <div class="m-3 p-3 bg-light rounded-5 col-md-9 mx-auto">
             <h1 class="">Nos menus</h1>
             <p class="">
                 Découvrez nos différents menus traiteurs, préparés avec soin pour toutes vos occasions.
             </p>
-        </div>
-
-        <div class="m-3 p-3 col-12 col-lg-10 mx-auto">
+        
             <?php
                 /* Execute la requête SQL : */
                 $requete = $pdo->query(
@@ -42,25 +40,25 @@
                 sort($regimesDisponibles);
             ?>
 
-            <form id="menu-filters" class="bg-light rounded-5 p-3 mb-4 w-100" aria-label="Filtre">
+            <form id="menu-filters" class="bg-light rounded-5 w-100" aria-label="Filtre">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2 class="h4 mb-0">Filtre</h2>
-                    <button type="reset" class="btn btn-outline-success btn-sm rounded-pill">Réinitialiser</button>
+                    <button type="reset" class="btn btn-outline-success rounded-pill">Réinitialiser</button>
                 </div>
-                <div class="d-flex flex-wrap gap-2">
+                <div class="d-flex flex-fill gap-3 flex-wrap">
                     <div class="menu-filter">
-                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center justify-content-between w-100" type="button" data-bs-toggle="collapse" data-bs-target="#max-price-filter" aria-expanded="false" aria-controls="max-price-filter">
+                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#max-price-filter" aria-expanded="false" aria-controls="max-price-filter">
                             <span>Prix maximum</span>
                             <i class="bi bi-chevron-down ms-2" aria-hidden="true"></i>
                         </button>
                         <div id="max-price-filter" class="collapse">
                             <label for="max-price" class="form-label">Prix maximum (€)</label>
-                            <input type="number" id="max-price" class="form-control" min="0" step="0.01" placeholder="Ex. 50">
+                            <input type="number" id="max-price" class="form-control" min="0" step="1" placeholder="Ex. 50">
                         </div>
                     </div>
 
                     <div class="menu-filter">
-                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center justify-content-between w-100" type="button" data-bs-toggle="collapse" data-bs-target="#price-range-filter" aria-expanded="false" aria-controls="price-range-filter">
+                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#price-range-filter" aria-expanded="false" aria-controls="price-range-filter">
                             <span>Fourchette de prix</span>
                             <i class="bi bi-chevron-down ms-2" aria-hidden="true"></i>
                         </button>
@@ -79,7 +77,7 @@
                     </div>
 
                     <div class="menu-filter">
-                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center justify-content-between w-100" type="button" data-bs-toggle="collapse" data-bs-target="#theme-filter" aria-expanded="false" aria-controls="theme-filter">
+                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#theme-filter" aria-expanded="false" aria-controls="theme-filter">
                             <span>Thèmes</span>
                             <i class="bi bi-chevron-down ms-2" aria-hidden="true"></i>
                         </button>
@@ -96,7 +94,7 @@
                     </div>
 
                     <div class="menu-filter">
-                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center justify-content-between w-100" type="button" data-bs-toggle="collapse" data-bs-target="#regime-filter" aria-expanded="false" aria-controls="regime-filter">
+                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#regime-filter" aria-expanded="false" aria-controls="regime-filter">
                             <span>Régimes</span>
                             <i class="bi bi-chevron-down ms-2" aria-hidden="true"></i>
                         </button>
@@ -113,7 +111,7 @@
                     </div>
 
                     <div class="menu-filter">
-                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center justify-content-between w-100" type="button" data-bs-toggle="collapse" data-bs-target="#people-filter" aria-expanded="false" aria-controls="people-filter">
+                        <button class="menu-filter-toggle btn btn-outline-success rounded-pill d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#people-filter" aria-expanded="false" aria-controls="people-filter">
                             <span>Nombre de personnes minimum</span>
                             <i class="bi bi-chevron-down ms-2" aria-hidden="true"></i>
                         </button>
@@ -125,6 +123,7 @@
                 </div>
                 <p id="menu-result-count" class="text-muted mt-3 mb-0" aria-live="polite"></p>
             </form>
+        </div>
 
             <div id="menu-list">
             <?php if ($menus): foreach ($menus as $menu): ?>
